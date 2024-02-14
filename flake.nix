@@ -19,18 +19,15 @@
       in {
         devShells.default =
           pkgs.mkShell.override {
-            stdenv = pkgs.gcc13Stdenv;
+            stdenv = pkgs.gcc13Stdenv; # To compile with GCC
+            #stdenv = pkgsUnstable.llvmPackages_17.libcxxStdenv; # To compile with Clang
           } {
             hardeningDisable = ["fortify"];
 
             packages = [
               pkgs.cmake
-              pkgsUnstable.clang-tools_17
+              (pkgs.clang-tools_17.override { enableLibcxx = true; })
             ];
-
-            env = {
-              CLANGD_PATH = "${pkgsUnstable.clang-tools_17}/bin/clangd";
-            };
           };
       };
     };
