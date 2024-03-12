@@ -14,26 +14,11 @@
         inputs',
         system,
         ...
-      }: let
-        buildDeps = [pkgs.fmt];
-        nativeDeps = [pkgs.cmake pkgs.pkg-config];
-      in {
+      }: {
         formatter = pkgs.alejandra;
-        devShells = let
-          baseDevShellAttrs = {
-            hardeningDisable = ["all"];
 
-            packages =
-              nativeDeps
-              ++ [
-                pkgs.act
-                pkgs.just
-              ];
-
-            buildInputs = buildDeps;
-          };
-        in {
-          devGcc = pkgs.mkShell.override {stdenv = pkgs.gcc12.stdenv;} baseDevShellAttrs;
+        devShells.default = pkgs.mkShell {
+          packages = [pkgs.cmake pkgs.pkg-config];
         };
       };
     };
