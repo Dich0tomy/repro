@@ -1,3 +1,0 @@
-Checks: 'performance-*, readability-*, cppcoreguidelines-*, bugprone-*, clang-analyzer-*, modernize-*, -readability-braces-around-statements, -cppcoreguidelines-pro-bounds-constant-array-index'
-CheckOptions:
-  readability-implicit-bool-conversion.AllowPointerConditions: true
