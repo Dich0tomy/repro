@@ -17,9 +17,7 @@
       }: {
         formatter = pkgs.alejandra;
 
-        devShells.default = pkgs.mkShell {
-          packages = [pkgs.cmake pkgs.pkg-config];
-        };
+        devShells.default = pkgs.mkShell { };
       };
     };
 }
