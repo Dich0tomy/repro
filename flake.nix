@@ -9,7 +9,7 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} (
       { flake-parts-lib, ... }: {
-        systems = ["x86_64-linux"];
+        systems = ["x86_64-linux" "aarch64-linux"];
         perSystem = {pkgs, inputs', ...}: let
         in {
           formatter = pkgs.alejandra;
