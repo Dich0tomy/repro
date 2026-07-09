@@ -1,9 +1,0 @@
-prefix=@out@
-includedir=${prefix}/include
-libdir=${prefix}/lib
-
-Name: cpptrace
-Description: cpptrace
-Version: 0.5.4
-Libs: -L${libdir}/ -lcpptrace
-Cflags: -I${includedir}/
