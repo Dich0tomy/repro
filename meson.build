@@ -1,8 +1,6 @@
 project('repro', 'cpp')
 
 local_deps = [
-  dependency('threads'),
-
   # Why do I even have to specify glfw3?
   dependency('glfw3'),
   dependency('rmlui')

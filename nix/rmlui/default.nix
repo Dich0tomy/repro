@@ -4,6 +4,7 @@
   glfw,
   freetype,
   fetchFromGitHub,
+  xorg,
 }:
 stdenv.mkDerivation (self: {
   pname = "rmlui";
@@ -21,20 +22,20 @@ stdenv.mkDerivation (self: {
 
   nativeBuildInputs = [cmake];
 
-  buildInputs = [freetype];
+  buildInputs = [xorg.libX11 freetype];
 
   propagatedBuildInputs = [glfw];
 
   postInstall = ''
-      mkdir -p $out/lib/pkgconfig
+    mkdir -p $out/lib/pkgconfig
+    mkdir -p $out/include
 
-    # :skull:
-      cp -r $src/Backends $out/include/RmlUi
+    cp -r $src/Backends $out/include/RmlUi
 
-      substitute \
-      	${./rmlui.pc} \
-      	$out/lib/pkgconfig/rmlui.pc \
-      	--subst-var out \
-      	--subst-var version
+    substitute \
+    	${./rmlui.pc} \
+    	$out/lib/pkgconfig/rmlui.pc \
+    	--subst-var out \
+    	--subst-var version
   '';
 })
