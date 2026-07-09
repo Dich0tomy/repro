@@ -1,1 +1,10 @@
-build/
+*/
+
+!src/
+!vendor/
+
+!.gitignore
+!CMakeLists.txt
+
+!flake.nix
+!flake.lock

@@ -1,19 +1,12 @@
-cmake_minimum_required( VERSION 3.0 )
+cmake_minimum_required( VERSION 3.25 )
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+
 project(repro)
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "./src/*.cpp")
-
-add_executable(repro ${SOURCES})
-
-target_compile_features(repro PUBLIC cxx_std_23)
-
-target_include_directories(repro PRIVATE "./src/")
-
-find_package(Drogon REQUIRED)
-
-target_link_libraries(
-	repro
-	PRIVATE
-			fmt
-			Drogon::Drogon
-)
+add_subdirectory(vendor)
+add_subdirectory(src)
