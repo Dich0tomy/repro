@@ -1,0 +1,9 @@
+prefix=@out@
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: RmlUi
+Description: The HTML/CSS User Interface library evolved 
+Version: @version@
+Libs: -L${libdir}/ -lRmlCore -lRmlDebugger -lglfw
+Cflags: -I${includedir}/
