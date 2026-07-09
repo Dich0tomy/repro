@@ -1,16 +1,15 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  description = "A very basic flake";
 
-  outputs = {nixpkgs, ...}: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    formatter.${system} = pkgs.alejandra;
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  };
 
-    devShell.${system} = pkgs.mkShell {
-      packages = [
-        pkgs.cmake
-      ];
-    };
+  outputs = { self, nixpkgs }: {
+
+    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+
+    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+
   };
 }
