@@ -1,10 +1,11 @@
-*/
-
-!src/
-!vendor/
+/*
 
 !.gitignore
-!CMakeLists.txt
 
 !flake.nix
 !flake.lock
+
+!README.md
+
+!CMakeLists.txt
+!main.cpp

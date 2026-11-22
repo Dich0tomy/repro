@@ -1,12 +1,22 @@
-cmake_minimum_required( VERSION 3.25 )
+cmake_minimum_required(VERSION 3.25)
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
+project(
+	repro
+	DESCRIPTION "repro"
+	LANGUAGES C CXX
+)
 
+set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 
-project(repro)
+include(FetchContent)
+FetchContent_Declare(
+  libpqxx
+	GIT_REPOSITORY https://github.com/jtv/libpqxx
+	GIT_TAG 8.0.0 # 7.10.7 works
+)
+FetchContent_MakeAvailable(libpqxx)
 
-add_subdirectory(vendor)
-add_subdirectory(src)
+add_executable(repro main.cpp)
+target_compile_definitions(repro PRIVATE _GLIBCXX_DEBUG=1) # comment that and it works
+target_link_libraries(repro PRIVATE pqxx)
